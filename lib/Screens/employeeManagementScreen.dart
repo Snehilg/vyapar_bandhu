@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/Screens/addItemScreen.dart';
+import 'package:vyapar_bandhu/Screens/addWorkerScreen.dart';
 
-class OwnerInventoryScreen extends StatelessWidget {
-  const OwnerInventoryScreen({Key? key}) : super(key: key);
-  static const String _title = 'Inventory';
+class EmployeeManagementScreen extends StatelessWidget {
+  const EmployeeManagementScreen({Key? key}) : super(key: key);
+  static const String _title = 'Employee Management';
 
-  static const items = [
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
+  static const names = [
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
+    'Jitendra Kumar',
   ];
 
-  static const current_quantity = [40, 70, 60, 80, 90, 60, 21, 40, 50];
-  static const min_quantity = [20, 20, 20, 20, 20, 20, 20, 20, 20];
+  static const age = [40, 70, 60, 80, 90, 60, 21, 40, 50];
+  static const leaves_taken = [2, 4, 6, 7, 5, 8, 5, 14, 2];
+  static const days_worked = [22, 3, 0, 12, 14, 20, 27, 10, 11];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class OwnerInventoryScreen extends StatelessWidget {
       appBar: AppBar(title: Text(_title), backgroundColor: Colors.blue),
       body: SafeArea(
         child: ListView.builder(
-          itemCount: items.length,
+          itemCount: names.length,
           itemBuilder: (context, index) {
             return Padding(
               padding:
@@ -45,33 +47,44 @@ class OwnerInventoryScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //name of item
+                          //name of worker
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                             child: Text(
-                              items[index],
+                              names[index],
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 23,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          //current quantity of item
+                          //age of worker
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Text(
-                              'current quantity :${current_quantity[index]}',
+                              'age :${age[index]}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 23,
                               ),
                             ),
                           ),
-                          //minimum quantity
+                          //leaves taken
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            child: Text(
+                              'leaves taken ${leaves_taken[index]}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23,
+                              ),
+                            ),
+                          ),
+                          //days worked
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
                             child: Text(
-                              'minimum quantity ${min_quantity[index]}',
+                              'days worked ${days_worked[index]}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 23,
@@ -102,7 +115,7 @@ class OwnerInventoryScreen extends StatelessWidget {
         foregroundColor: Colors.white,
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddItemScreen()));
+              MaterialPageRoute(builder: (context) => const AddWorkerScreen()));
         },
         child: Icon(Icons.add),
       ),

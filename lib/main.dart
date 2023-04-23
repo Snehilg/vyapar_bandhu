@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vyapar_bandhu/Screens/attendanceDescriptionScreen.dart';
+import 'package:vyapar_bandhu/Screens/employeeManagementScreen.dart';
 import 'package:vyapar_bandhu/Screens/loginScreen.dart';
 import 'package:vyapar_bandhu/Screens/markAttendanceScreen.dart';
 import 'package:vyapar_bandhu/Screens/ownerInventoryScreen.dart';
 import 'package:vyapar_bandhu/Screens/ownerNavigationScreen.dart';
 import 'package:vyapar_bandhu/Screens/profileScreen.dart';
 import 'package:vyapar_bandhu/Screens/salaryScreen.dart';
+import 'package:vyapar_bandhu/Screens/sellItemScreen.dart';
 import 'package:vyapar_bandhu/Screens/workerNavigationScreen.dart';
 
 void main() {
@@ -16,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   static const String _title = "Vyapar Bandhu";
 
+  //myApp <- optionScreen
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,7 +55,13 @@ class OptionScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
-              child: const Text("Login Screen"),
+              child: const Text(
+                "Login Screen",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             // Owner Navigation Screen
             TextButton(
@@ -62,7 +72,13 @@ class OptionScreen extends StatelessWidget {
                       builder: (context) => const OwnerNavigationScreen()),
                 );
               },
-              child: const Text("Owner Nav Screen"),
+              child: const Text(
+                "Owner Nav Screen",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
@@ -78,7 +94,13 @@ class OptionScreen extends StatelessWidget {
                       builder: (context) => const WorkerNavigationScreen()),
                 );
               },
-              child: const Text("Worker Nav Screen"),
+              child: const Text(
+                "Worker Nav Screen",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             //Owner Inventory
             TextButton(
@@ -89,7 +111,13 @@ class OptionScreen extends StatelessWidget {
                       builder: (context) => const OwnerInventoryScreen()),
                 );
               },
-              child: const Text("Owner Inventory"),
+              child: const Text(
+                "Owner Inventory",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
@@ -105,42 +133,70 @@ class OptionScreen extends StatelessWidget {
                       builder: (context) => const ProfileScreen()),
                 );
               },
-              child: const Text("Profile"),
+              child: const Text(
+                "Profile",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             //Attendance Description
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const AttendanceDescriptionScreen()),
                 );
               },
-              child: const Text("Attendance Description"),
+              child: const Text(
+                "Attendance Description",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            //Worker Page
+            //Employee Management
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const EmployeeManagementScreen()),
                 );
               },
-              child: const Text("Worker Screen"),
+              child: const Text(
+                "Employee Management",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             //sell item
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const SellItemScreen()),
                 );
               },
-              child: const Text("Sell Item"),
+              child: const Text(
+                "Sell Item",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
@@ -156,7 +212,13 @@ class OptionScreen extends StatelessWidget {
                       builder: (context) => const MarkAttendanceScreen()),
                 );
               },
-              child: const Text("Mark Attendance"),
+              child: const Text(
+                "Mark Attendance",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             //Salary
             TextButton(
@@ -166,7 +228,13 @@ class OptionScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const SalaryScreen()),
                 );
               },
-              child: const Text("Salary"),
+              child: const Text(
+                "Salary",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),

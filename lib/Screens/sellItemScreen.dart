@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/Screens/addItemScreen.dart';
 
-class OwnerInventoryScreen extends StatelessWidget {
-  const OwnerInventoryScreen({Key? key}) : super(key: key);
+class SellItemScreen extends StatelessWidget {
+  const SellItemScreen({Key? key}) : super(key: key);
   static const String _title = 'Inventory';
 
   static const items = [
@@ -15,10 +15,25 @@ class OwnerInventoryScreen extends StatelessWidget {
     'aashirvad Atta',
     'aashirvad Atta',
     'aashirvad Atta',
+    'aashirvad Atta',
+    'aashirvad Atta',
+    'aashirvad Atta',
   ];
 
-  static const current_quantity = [40, 70, 60, 80, 90, 60, 21, 40, 50];
-  static const min_quantity = [20, 20, 20, 20, 20, 20, 20, 20, 20];
+  static const current_quantity = [
+    40,
+    70,
+    60,
+    80,
+    90,
+    60,
+    21,
+    40,
+    50,
+    14,
+    40,
+    44
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,24 +82,13 @@ class OwnerInventoryScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          //minimum quantity
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                            child: Text(
-                              'minimum quantity ${min_quantity[index]}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 23,
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: Icon(
-                        Icons.delete,
+                        Icons.minimize,
                         color: Colors.white,
                         size: 40,
                       ),
@@ -97,15 +101,6 @@ class OwnerInventoryScreen extends StatelessWidget {
         ),
       ),
       //floating action button
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[700],
-        foregroundColor: Colors.white,
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddItemScreen()));
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
 }

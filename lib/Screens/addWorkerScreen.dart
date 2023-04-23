@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-  static const String _title = 'Login Screen';
+class AddWorkerScreen extends StatelessWidget {
+  const AddWorkerScreen({Key? key}) : super(key: key);
+  static const String _title = 'Add Worker';
 
   @override
   Widget build(BuildContext context) {
@@ -15,64 +15,67 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(
-              height: 120,
+              height: 10,
             ),
-            //email field
+            //name field
             const Padding(
               padding: EdgeInsets.all(15),
               child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    labelText: 'Name',
+                    hintText: 'Enter the name of item'),
               ),
             ),
-            //password field
+            //age field
             const Padding(
               padding: EdgeInsets.all(15),
               child: TextField(
-                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter secure password'),
+                    labelText: 'Age',
+                    hintText: 'Enter Age'),
+              ),
+            ),
+            //salary field
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Salary',
+                    hintText: 'Enter Salary'),
+              ),
+            ),
+            //workers email field
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Workers Email',
+                    hintText: 'Enter Workers Email'),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            //Login Button
+            //Add Button
             Container(
               height: 50,
-              width: 250,
+              width: 100,
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: const TextButton(
-                onPressed: null,
                 child: Text(
-                  'Login',
+                  'Add',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
+                onPressed: null,
               ),
             ),
             const SizedBox(
               height: 10,
-            ),
-            //forgot password
-            const TextButton(
-              onPressed: null,
-              child: Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
-            ),
-            //new user
-            const TextButton(
-              onPressed: null,
-              child: Text(
-                'New User? Create Account',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
             ),
           ],
         ),
