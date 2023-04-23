@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/Screens/loginScreen.dart';
+import 'package:vyapar_bandhu/Screens/markAttendanceScreen.dart';
+import 'package:vyapar_bandhu/Screens/ownerInventoryScreen.dart';
+import 'package:vyapar_bandhu/Screens/ownerNavigationScreen.dart';
+import 'package:vyapar_bandhu/Screens/profileScreen.dart';
+import 'package:vyapar_bandhu/Screens/salaryScreen.dart';
+import 'package:vyapar_bandhu/Screens/workerNavigationScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +22,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(_title),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.blue,
         ),
         body: const SafeArea(
           child: OptionScreen(),
@@ -52,7 +58,8 @@ class OptionScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const OwnerNavigationScreen()),
                 );
               },
               child: const Text("Owner Nav Screen"),
@@ -67,7 +74,8 @@ class OptionScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const WorkerNavigationScreen()),
                 );
               },
               child: const Text("Worker Nav Screen"),
@@ -77,7 +85,8 @@ class OptionScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const OwnerInventoryScreen()),
                 );
               },
               child: const Text("Owner Inventory"),
@@ -87,15 +96,16 @@ class OptionScreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            //My Profile
+            //Profile
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()),
                 );
               },
-              child: const Text("My Profile"),
+              child: const Text("Profile"),
             ),
             //Attendance Description
             TextButton(
@@ -134,19 +144,33 @@ class OptionScreen extends StatelessWidget {
             ),
           ],
         ),
-        //Mark attendance
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
-            );
-          },
-          child: const Text("Mark Attendance"),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            //Mark attendance
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MarkAttendanceScreen()),
+                );
+              },
+              child: const Text("Mark Attendance"),
+            ),
+            //Salary
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SalaryScreen()),
+                );
+              },
+              child: const Text("Salary"),
+            ),
+          ],
         ),
       ],
     );
   }
 }
-/*
-        */

@@ -16,8 +16,9 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 120,
             ),
+            //email field
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.all(15),
               child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -25,9 +26,9 @@ class LoginScreen extends StatelessWidget {
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
+            //password field
             const Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+              padding: EdgeInsets.all(15),
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -39,6 +40,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            //Login Button
             Container(
               height: 50,
               width: 250,
@@ -55,6 +57,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            //forgot password
             const TextButton(
               onPressed: null,
               child: Text(
@@ -62,6 +65,7 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
             ),
+            //new user
             const TextButton(
               onPressed: null,
               child: Text(
