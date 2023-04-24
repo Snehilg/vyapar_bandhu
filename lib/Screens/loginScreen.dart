@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(
-              height: 120,
+              height: 10,
             ),
             //email field
             const Padding(

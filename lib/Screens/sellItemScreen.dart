@@ -3,7 +3,7 @@ import 'package:vyapar_bandhu/Screens/addItemScreen.dart';
 
 class SellItemScreen extends StatelessWidget {
   const SellItemScreen({Key? key}) : super(key: key);
-  static const String _title = 'Inventory';
+  static const String _title = 'Sell Item';
 
   static const items = [
     'aashirvad Atta',
