@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984863158943",
+    "project_id": "vyaparbandhu-a4285",
+    "storage_bucket": "vyaparbandhu-a4285.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984863158943:android:5916af1af3fe42581b68aa",
+        "android_client_info": {
+          "package_name": "com.example.vyapar_bandhu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGTuFmi0vYlSrRfm_pjD59FtebHcse4ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

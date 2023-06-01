@@ -41,7 +41,14 @@ class OptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Center(
+      child: const Text(""),
+    );
+  }
+}
+
+/*
+return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Row(
@@ -240,5 +247,4 @@ class OptionScreen extends StatelessWidget {
         ),
       ],
     );
-  }
-}
+*/
