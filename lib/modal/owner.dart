@@ -10,7 +10,6 @@ class Owner {
   final String email;
   //final Item item[];
   final String name;
-  final String uid;
   //final Worker worker[];
 
   const Owner(
@@ -19,7 +18,6 @@ class Owner {
     @required this.email,
     /*@required this.item,*/
     @required this.name,
-    @required this.uid,
     /*@required this.worker*/
   );
 
@@ -29,8 +27,7 @@ class Owner {
         email = json['email'] as String,
         //doubt in as *type*  and casting
         //item=json['item'] as dynamic,
-        name = json['name'] as String,
-        uid = json['uid'] as String;
+        name = json['name'] as String;
   //doubt in as *type* and casting
   //worker=json['worker'] as dynamic;
 }

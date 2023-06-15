@@ -4,33 +4,17 @@ class Worker {
   //9
   final String address;
   final int age;
-  final int daysWorked;
   final String email;
-  final int leavesTaken;
   final String name;
-  final String ownerUid;
-  final String uid;
-  final int wagePerDay;
+  final String ownerEmail;
 
-  const Worker(
-      @required this.address,
-      @required this.age,
-      @required this.daysWorked,
-      @required this.email,
-      @required this.leavesTaken,
-      @required this.name,
-      @required this.ownerUid,
-      @required this.uid,
-      @required this.wagePerDay);
+  const Worker(@required this.address, @required this.age, @required this.email,
+      @required this.name, @required this.ownerEmail);
 
   Worker.fromJson(Map<String, dynamic> json)
       : address = json['address'] as String,
         age = json['age'] as int,
-        daysWorked = json['daysWorked'] as int,
         email = json['email'] as String,
-        leavesTaken = json['leavesTaken'] as int,
         name = json['name'] as String,
-        ownerUid = json['ownerUid'] as String,
-        uid = json['uid'] as String,
-        wagePerDay = json['wagePerDay'] as int;
+        ownerEmail = json['ownerEmail'] as String;
 }

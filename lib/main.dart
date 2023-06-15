@@ -1,16 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:vyapar_bandhu/Screens/attendanceDescriptionScreen.dart';
-import 'package:vyapar_bandhu/Screens/employeeManagementScreen.dart';
 import 'package:vyapar_bandhu/Screens/loginScreen.dart';
-import 'package:vyapar_bandhu/Screens/markAttendanceScreen.dart';
-import 'package:vyapar_bandhu/Screens/ownerInventoryScreen.dart';
-import 'package:vyapar_bandhu/Screens/ownerNavigationScreen.dart';
-import 'package:vyapar_bandhu/Screens/profileScreen.dart';
-import 'package:vyapar_bandhu/Screens/salaryScreen.dart';
-import 'package:vyapar_bandhu/Screens/sellItemScreen.dart';
-import 'package:vyapar_bandhu/Screens/workerNavigationScreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -41,9 +35,7 @@ class OptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: const Text(""),
-    );
+    return const LoginScreen();
   }
 }
 
