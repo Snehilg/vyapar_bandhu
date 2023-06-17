@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:vyapar_bandhu/modal/persons.dart';
+import '../repo/usersRepository.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   //value for radio button
   UserType userType = UserType.owner;
 
+  //the function that will be invoked when signing in
   void signIn() async {
     UserCredential user = await signInWithGoogle();
     email = user.user?.email as String;
@@ -41,6 +44,10 @@ class _LoginScreenState extends State<LoginScreen> {
     print(name);
     print(email);
     print(type);
+
+    UsersRepository usersRepository = UsersRepository(Persons(
+        address, age, email, name, (userType.name == 'owner') ? true : false));
+    usersRepository.addUser();
   }
 
   @override

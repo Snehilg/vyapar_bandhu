@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AddItemScreen extends StatelessWidget {
+class AddItemScreen extends StatefulWidget {
   const AddItemScreen({Key? key}) : super(key: key);
-  static const String _title = 'Add Item';
 
+  @override
+  State<AddItemScreen> createState() => _AddItemScreenState();
+}
+
+class _AddItemScreenState extends State<AddItemScreen> {
+  static const String _title = 'Add Items';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
