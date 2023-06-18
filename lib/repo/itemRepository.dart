@@ -20,7 +20,7 @@ class ItemRepository {
           'minQuantity': item.minQuantity,
           'name': item.name,
           'ownerEmail': item.ownerEmail,
-          'pricePerUnit': item.pricePerUnit,
+          'pricePerUnit': item.price,
           'uid': item.uid,
         })
         .then((value) => print('item added'))

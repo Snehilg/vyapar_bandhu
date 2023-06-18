@@ -6,7 +6,7 @@ class Item {
   final String minQuantity;
   final String name;
   final String ownerEmail;
-  final String pricePerUnit;
+  final String price;
   final String uid;
 
   const Item(
@@ -14,7 +14,7 @@ class Item {
       @required this.minQuantity,
       @required this.name,
       @required this.ownerEmail,
-      @required this.pricePerUnit,
+      @required this.price,
       @required this.uid);
 
   Item.fromJson(Map<String, dynamic> json)
@@ -22,6 +22,6 @@ class Item {
         minQuantity = json['minQuantity'] as String,
         name = json['name'] as String,
         ownerEmail = json['ownerEmail'] as String,
-        pricePerUnit = json['pricePerUnit'] as String,
+        price = json['price'] as String,
         uid = json['uid'] as String;
 }

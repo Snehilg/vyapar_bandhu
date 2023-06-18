@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:vyapar_bandhu/modal/persons.dart';
+import 'package:vyapar_bandhu/repo/loginAuth.dart';
 import '../repo/usersRepository.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +17,12 @@ enum UserType { owner, worker }
 class _LoginScreenState extends State<LoginScreen> {
   //static const String _title = 'Login With Google';
 
+  //if Registering variable
+  static bool isRegistering = true;
+  static String headingTitle = 'Register';
+  //Already Registered means want to login
+  static String buttonTitle = 'Already Registered';
+
   final TextEditingController addressController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -25,9 +31,25 @@ class _LoginScreenState extends State<LoginScreen> {
   //value for radio button
   UserType userType = UserType.owner;
 
+  //function for changing state accordingly Register/Login
+  void decide() {
+    setState(() {
+      //reversing the value of isRegistering
+      //according to them new titles will be choosen inside setState and ui will change
+      if (isRegistering) {
+        isRegistering = false;
+      } else {
+        isRegistering = true;
+      }
+      headingTitle = isRegistering ? 'Register' : 'Login';
+      buttonTitle = isRegistering ? 'Already Registered' : 'Want to Register';
+    });
+  }
+
   //the function that will be invoked when signing in
   void signIn() async {
-    UserCredential user = await signInWithGoogle();
+    //google sign in is prewritten in LoginAuth
+    UserCredential user = await LoginAuth().signInWithGoogle();
     email = user.user?.email as String;
 
     String address = addressController.text;
@@ -59,88 +81,102 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: <Widget>[
               //title
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(15),
                 child: Text(
-                  "Register With Google",
+                  "$headingTitle With Google",
                   style: TextStyle(color: Colors.blue, fontSize: 22),
                 ),
               ),
+              //wrapping name,address,age and radio with visible widget
+              //to control their visibilty accordingly
               //name
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Name',
-                    hintText: 'Enter Full Name',
+              Visibility(
+                visible: isRegistering,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                  child: TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Name',
+                      hintText: 'Enter Full Name',
+                    ),
                   ),
                 ),
               ),
               //address
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                child: TextField(
-                  controller: addressController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Address',
-                    hintText: 'Enter Address',
+              Visibility(
+                visible: isRegistering,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                  child: TextField(
+                    controller: addressController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Address',
+                      hintText: 'Enter Address',
+                    ),
                   ),
                 ),
               ),
               //age
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                child: TextField(
-                  controller: ageController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Age',
-                    hintText: 'Enter Age',
+              Visibility(
+                visible: isRegistering,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                  child: TextField(
+                    controller: ageController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Age',
+                      hintText: 'Enter Age',
+                    ),
                   ),
                 ),
               ),
               //Radio Button for owner and worker
-              Row(
-                //radio button connects itself with an enum
-                //and on changed is responsible for changing the global variable
-                //group value is that global value holding the current selected option
-                children: [
-                  //owner
-                  Row(
-                    children: [
-                      Radio(
-                        //title: const Text('Owner'),
-                        value: UserType.owner,
-                        groupValue: userType,
-                        onChanged: (UserType? value) {
-                          setState(() {
-                            userType = value!;
-                          });
-                        },
-                      ),
-                      const Text('Owner'),
-                    ],
-                  ),
-                  //worker
-                  Row(
-                    children: [
-                      Radio(
-                        //title: const Text('Worker'),
-                        value: UserType.worker,
-                        groupValue: userType,
-                        onChanged: (UserType? value) {
-                          setState(() {
-                            userType = value!;
-                          });
-                        },
-                      ),
-                      const Text('Worker'),
-                    ],
-                  ),
-                ],
+              Visibility(
+                visible: isRegistering,
+                child: Row(
+                  //radio button connects itself with an enum
+                  //and on changed is responsible for changing the global variable
+                  //group value is that global value holding the current selected option
+                  children: [
+                    //owner
+                    Row(
+                      children: [
+                        Radio(
+                          //title: const Text('Owner'),
+                          value: UserType.owner,
+                          groupValue: userType,
+                          onChanged: (UserType? value) {
+                            setState(() {
+                              userType = value!;
+                            });
+                          },
+                        ),
+                        const Text('Owner'),
+                      ],
+                    ),
+                    //worker
+                    Row(
+                      children: [
+                        Radio(
+                          //title: const Text('Worker'),
+                          value: UserType.worker,
+                          groupValue: userType,
+                          onChanged: (UserType? value) {
+                            setState(() {
+                              userType = value!;
+                            });
+                          },
+                        ),
+                        const Text('Worker'),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               //button for login,with container decoration
               Container(
@@ -158,23 +194,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+              //button to choose Login/Register
+              Center(
+                child: TextButton(
+                  onPressed: decide,
+                  child: Text(
+                    buttonTitle,
+                    style: const TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  //google sign in function outside build
-  Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    //only return after logging in, flow->auth->credential creation
-    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
