@@ -30,9 +30,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
     String uid = name + ownerEmail!;
 
     //function calling to add item
-    ItemRepository(Item(
-            currentQuantity, minimumQuantity, name, ownerEmail!, price, uid))
-        .addItem();
+    ItemRepository().addItem(
+        Item(currentQuantity, minimumQuantity, name, ownerEmail!, price, uid));
+
+    Navigator.pop(context);
   }
 
   @override

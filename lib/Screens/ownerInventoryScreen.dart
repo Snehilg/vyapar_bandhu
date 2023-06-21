@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/Screens/addItemScreen.dart';
 
-class OwnerInventoryScreen extends StatelessWidget {
+class OwnerInventoryScreen extends StatefulWidget {
   const OwnerInventoryScreen({Key? key}) : super(key: key);
   static const String _title = 'Inventory';
 
@@ -21,12 +21,19 @@ class OwnerInventoryScreen extends StatelessWidget {
   static const min_quantity = [20, 20, 20, 20, 20, 20, 20, 20, 20];
 
   @override
+  State<OwnerInventoryScreen> createState() => _OwnerInventoryScreenState();
+}
+
+class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title), backgroundColor: Colors.blue),
+      appBar: AppBar(
+          title: Text(OwnerInventoryScreen._title),
+          backgroundColor: Colors.blue),
       body: SafeArea(
         child: ListView.builder(
-          itemCount: items.length,
+          itemCount: OwnerInventoryScreen.items.length,
           itemBuilder: (context, index) {
             return Padding(
               padding:
@@ -49,7 +56,7 @@ class OwnerInventoryScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                             child: Text(
-                              items[index],
+                              OwnerInventoryScreen.items[index],
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 23,
@@ -60,7 +67,7 @@ class OwnerInventoryScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Text(
-                              'current quantity :${current_quantity[index]}',
+                              'current quantity :${OwnerInventoryScreen.current_quantity[index]}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 23,
@@ -71,7 +78,7 @@ class OwnerInventoryScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
                             child: Text(
-                              'minimum quantity ${min_quantity[index]}',
+                              'minimum quantity ${OwnerInventoryScreen.min_quantity[index]}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 23,

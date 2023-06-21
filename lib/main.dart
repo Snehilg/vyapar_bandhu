@@ -1,20 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/Screens/loginScreen.dart';
+import 'package:vyapar_bandhu/Screens/ownerNavigationScreen.dart';
+import 'package:vyapar_bandhu/Screens/workerNavigationScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   static const String _title = "Vyapar Bandhu";
 
-  //myApp <- optionScreen
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,29 +30,72 @@ class MyApp extends StatelessWidget {
           title: const Text(_title),
           backgroundColor: Colors.blue,
         ),
-        body: const SafeArea(
-          child: MainScreen(),
+        body: SafeArea(
+          child: StreamBuilder(
+              //builder dependent on auth state with initial state of current user
+              stream: FirebaseAuth.instance.authStateChanges(),
+              initialData: FirebaseAuth.instance.currentUser,
+              builder: (context, snapshot) {
+                //if user isn't logged in
+                if (!(snapshot.hasData)) {
+                  return const LoginScreen();
+                } else {
+                  return OwnerNavigationScreen();
+                  /*const Center(
+                    child: CircularProgressIndicator(),
+                  );*/
+                }
+              }),
         ),
       ),
     );
   }
 }
-
+/*
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
-}
-
+}*/
+/*
 class _MainScreenState extends State<MainScreen> {
-  final userAuth = FirebaseAuth.instance.authStateChanges();
+  final userAuth = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
-    return LoginScreen();
+    return StreamBuilder<User?>(
+        //builder dependent on auth state with initial state of current user
+        stream: FirebaseAuth.instance.authStateChanges(),
+        initialData: FirebaseAuth.instance.currentUser,
+        builder: (context, snapshot) {
+          //if user logged in ?? then is owner/worker/not registered
+          if (snapshot.hasData) {
+            //do every thing inside when snapshot has data
+            String userEmail = FirebaseAuth.instance.currentUser!.email!;
+            String type = '';
+
+            FirebaseFirestore.instance
+                .collection('commonUser')
+                .doc("userEmail")
+                .get()
+                .then((DocumentSnapshot snapshot) =>
+                    print(type = snapshot['type'] as String));
+            print((type != "owner"));
+
+            return HomeScreen().showScreen(type == "owner");
+          }
+          //if user isn't logged in
+          else if (!(snapshot.hasData)) {
+            return const LoginScreen();
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
   }
-}
+}*/
 
 /*
 return Column(

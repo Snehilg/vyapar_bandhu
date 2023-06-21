@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/modal/item.dart';
 
 class ItemRepository {
-  Item item;
-  ItemRepository(@required this.item);
-
   //refs for collections
   CollectionReference owners = FirebaseFirestore.instance.collection('owners');
 
-  Future<void> addItem() {
+  Future<void> addItem(Item item) {
+    print('addItem invoked');
     //going inside owners->ownerDoc->items
     CollectionReference items = owners.doc(item.ownerEmail).collection('items');
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vyapar_bandhu/Screens/ownerInventoryScreen.dart';
 
 class OwnerNavigationScreen extends StatelessWidget {
   const OwnerNavigationScreen({Key? key}) : super(key: key);
@@ -24,7 +25,13 @@ class OwnerNavigationScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const OwnerInventoryScreen()));
+                      },
                       child: Text(
                         'Inventory',
                         style: TextStyle(color: Colors.white, fontSize: 25),
