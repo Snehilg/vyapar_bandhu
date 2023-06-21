@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vyapar_bandhu/Screens/sellItemScreen.dart';
 
 class WorkerNavigationScreen extends StatelessWidget {
   const WorkerNavigationScreen({Key? key}) : super(key: key);
@@ -24,7 +25,13 @@ class WorkerNavigationScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (builder) => const SellItemScreen(),
+                            ));
+                      },
                       child: Text(
                         'Sell Item',
                         style: TextStyle(color: Colors.white, fontSize: 25),

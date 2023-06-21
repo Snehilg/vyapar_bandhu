@@ -47,11 +47,11 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return const Text('Something went wrong');
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return const Text("Loading");
             }
 
             return ListView.builder(
@@ -96,7 +96,7 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 child: Text(
                                   'current quantity :${snapshot.data!.docs[index].get('currentQuantity')}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 23,
                                   ),
@@ -151,78 +151,8 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const AddItemScreen()));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
 }
-/*ListView.builder(
-          itemCount: OwnerInventoryScreen.items.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  //we have used flex in the column and icon as well to allot 3:1 space
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          //name of item
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                            child: Text(
-                              OwnerInventoryScreen.items[index],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          //current quantity of item
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                            child: Text(
-                              'current quantity :${OwnerInventoryScreen.current_quantity[index]}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 23,
-                              ),
-                            ),
-                          ),
-                          //minimum quantity
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                            child: Text(
-                              'minimum quantity ${OwnerInventoryScreen.min_quantity[index]}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 23,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),*/

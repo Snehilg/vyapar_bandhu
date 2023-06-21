@@ -76,8 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
           (userType.name == 'owner') ? true : false));
     }
 
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const OwnerNavigationScreen()));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const WorkerNavigationScreen()));
 
     //navigating to screen
     /* if (type == "Owner") {
