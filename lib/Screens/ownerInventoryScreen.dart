@@ -8,21 +8,6 @@ class OwnerInventoryScreen extends StatefulWidget {
   const OwnerInventoryScreen({Key? key}) : super(key: key);
   static const String _title = 'Inventory';
 
-  static const items = [
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-    'aashirvad Atta',
-  ];
-
-  static const current_quantity = [40, 70, 60, 80, 90, 60, 21, 40, 50];
-  static const min_quantity = [20, 20, 20, 20, 20, 20, 20, 20, 20];
-
   @override
   State<OwnerInventoryScreen> createState() => _OwnerInventoryScreenState();
 }
@@ -35,6 +20,20 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
       .doc(FirebaseAuth.instance.currentUser!.email!)
       .collection('items')
       .snapshots();
+
+  //collection ref for items
+  CollectionReference itemsRef = FirebaseFirestore.instance
+      .collection('owners')
+      .doc(FirebaseAuth.instance.currentUser!.email!)
+      .collection('items');
+
+  void deleteItem(String uid) {
+    itemsRef
+        .doc(uid)
+        .delete()
+        .then((value) => print("deleted doc $uid"))
+        .catchError((Error) => print('error occured in deleteing $uid'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +62,13 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      //which color to show based on quantity
+                      color: (int.parse(
+                                  '${snapshot.data!.docs[index].get('currentQuantity')}') >
+                              int.parse(
+                                  '${snapshot.data!.docs[index].get('minQuantity')}'))
+                          ? Colors.blue
+                          : Colors.red,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -103,7 +108,7 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                                     const EdgeInsets.fromLTRB(10, 0, 0, 10),
                                 child: Text(
                                   'minimum quantity ${snapshot.data!.docs[index].get('minQuantity')}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 23,
                                   ),
@@ -114,11 +119,20 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Icon(
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                            iconSize: 50,
+                            onPressed: () => deleteItem(
+                                snapshot.data!.docs[index].get('uid')),
+                          ),
+                          /*,Icon(
                             Icons.delete,
                             color: Colors.white,
                             size: 40,
-                          ),
+                          ),*/
                         ),
                       ],
                     ),
