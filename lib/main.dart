@@ -21,11 +21,46 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static const String _title = "Vyapar Bandhu";
+  String type = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getSpecificField();
+  }
+
+  Future<String> getSpecificField() async {
+    var field =
+        "type"; // Replace with the name of the field you want to retrieve
+
+    var snapshot = await FirebaseFirestore.instance
+        .collection('commonUser')
+        .doc(FirebaseAuth.instance.currentUser?.email!)
+        .get();
+    var data = snapshot.data();
+
+    if (data != null && data.containsKey(field)) {
+      print("type is ${data[field]}");
+      setState(() {
+        type = data[field];
+      });
+      return data[field];
+    } else {
+      return 'Field not found';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+        //on the time of opening the app , if not logged in the loginPage else accordingly
+        home: (FirebaseAuth.instance.currentUser == null)
+            ? LoginScreen()
+            : ((type == "owner")
+                ? OwnerNavigationScreen()
+                : WorkerNavigationScreen())
+        /* Scaffold(
         appBar: AppBar(
           title: const Text(_title),
           backgroundColor: Colors.blue,
@@ -47,8 +82,8 @@ class _MyAppState extends State<MyApp> {
                 }
               }),
         ),
-      ),
-    );
+      ),*/
+        );
   }
 }
 /*

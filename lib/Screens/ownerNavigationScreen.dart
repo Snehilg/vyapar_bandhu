@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vyapar_bandhu/Screens/employeeManagementScreen.dart';
 import 'package:vyapar_bandhu/Screens/ownerInventoryScreen.dart';
 
 class OwnerNavigationScreen extends StatelessWidget {
@@ -12,95 +13,74 @@ class OwnerNavigationScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [
-                //Inventory
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const OwnerInventoryScreen()));
-                      },
-                      child: Text(
-                        'Inventory',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
+            //Inventory
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const OwnerInventoryScreen()));
+                  },
+                  child: Text(
+                    'Inventory',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
-                //Monitor Attendance
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(
-                        'Monitor Attendance',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-            Row(
-              children: [
-                //Employee Management
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(
-                        'Employee Management',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
+            //employee management
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const EmployeeManagementScreen()));
+                  },
+                  child: const Text(
+                    'Employee Management',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
-                //Profile
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(
-                        'Profile',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
+              ),
+            ),
+            //Profile
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton(
+                  onPressed: null,
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
-              ],
+              ),
             ),
           ],
         ),

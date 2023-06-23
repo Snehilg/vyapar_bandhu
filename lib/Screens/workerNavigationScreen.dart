@@ -8,99 +8,53 @@ class WorkerNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title), backgroundColor: Colors.blue),
+      appBar: AppBar(title: const Text(_title), backgroundColor: Colors.blue),
       body: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [
-                //Sell Item
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (builder) => const SellItemScreen(),
-                            ));
-                      },
-                      child: Text(
-                        'Sell Item',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
+            //Sell Item
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (builder) => const SellItemScreen(),
+                        ));
+                  },
+                  child: const Text(
+                    'Sell Item',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
-                //Mark Attendance
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(
-                        'Mark Attendance',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-            Row(
-              children: [
-                //Salary
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(
-                        'Salary',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
+            //Profile
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton(
+                  onPressed: null,
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
-                //Profile
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(
-                        'Profile',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),

@@ -1,16 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vyapar_bandhu/repo/itemRepository.dart';
 
 class SellItemScreen extends StatefulWidget {
   const SellItemScreen({Key? key}) : super(key: key);
-  static const String _title = 'Sell item';
 
   @override
   State<SellItemScreen> createState() => _SellItemScreenState();
 }
 
 class _SellItemScreenState extends State<SellItemScreen> {
-  final String ownerEmail = "";
+  static const String _title = 'Sell item';
+  String st =
+      ItemRepository().getOwnerEmail(FirebaseAuth.instance.currentUser!.email!);
 
   //stream of items in owners through email of owner from worker
   Stream<QuerySnapshot> itemsStream = FirebaseFirestore.instance
@@ -34,16 +37,14 @@ class _SellItemScreenState extends State<SellItemScreen> {
           .doc(uid)
           .update({'currentQuantity': currentQuantity.toString()})
           .then((value) => print('updated $uid with $currentQuantity'))
-          .catchError((Error) => print('error occured in updating $uid'));
+          .catchError((Error) => print('error occurred in updating $uid'));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text(SellItemScreen._title),
-          backgroundColor: Colors.blue),
+      appBar: AppBar(title: const Text(_title), backgroundColor: Colors.blue),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
           stream: itemsStream,

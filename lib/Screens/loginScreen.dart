@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  //the function that will be invoked when signing in
+  //the function that will be invoked when signing in(login button clicked)
   void signIn() async {
     //google sign in is pre-written in LoginAuth
     UserCredential user = await LoginAuth().signInWithGoogle();
@@ -69,20 +69,20 @@ class _LoginScreenState extends State<LoginScreen> {
     print(email);
     print(type);
 
-    //function to add person according to their type owner/worker
+    //function to add person according to their type owner/worker,only if they are registering first time
     if (isRegistering) {
       print('add user executed');
       UsersRepository().addUser(Persons(address, age, email, name,
           (userType.name == 'owner') ? true : false));
     }
 
-    Navigator.push(
+    /* Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => const WorkerNavigationScreen()));
-
+*/
     //navigating to screen
-    /* if (type == "Owner") {
+    if (type == "owner") {
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           MaterialPageRoute(
               builder: (context) => const WorkerNavigationScreen()));
-    }*/
+    }
   }
 
   @override
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Visibility(
                 visible: !isRegistering,
                 child: const SizedBox(
-                  height: 220,
+                  height: 270,
                 ),
               ),
               //wrapping name,address,age and radio with visible widget
@@ -166,45 +166,48 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               //Radio Button for owner and worker
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //radio button connects itself with an enum
-                //and on changed is responsible for changing the global variable
-                //group value is that global value holding the current selected option
-                children: [
-                  //owner
-                  Row(
-                    children: [
-                      Radio(
-                        //title: const Text('Owner'),
-                        value: UserType.owner,
-                        groupValue: userType,
-                        onChanged: (UserType? value) {
-                          setState(() {
-                            userType = value!;
-                          });
-                        },
-                      ),
-                      const Text('Owner'),
-                    ],
-                  ),
-                  //worker
-                  Row(
-                    children: [
-                      Radio(
-                        //title: const Text('Worker'),
-                        value: UserType.worker,
-                        groupValue: userType,
-                        onChanged: (UserType? value) {
-                          setState(() {
-                            userType = value!;
-                          });
-                        },
-                      ),
-                      const Text('Worker'),
-                    ],
-                  ),
-                ],
+              Visibility(
+                visible: isRegistering,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //radio button connects itself with an enum
+                  //and on changed is responsible for changing the global variable
+                  //group value is that global value holding the current selected option
+                  children: [
+                    //owner
+                    Row(
+                      children: [
+                        Radio(
+                          //title: const Text('Owner'),
+                          value: UserType.owner,
+                          groupValue: userType,
+                          onChanged: (UserType? value) {
+                            setState(() {
+                              userType = value!;
+                            });
+                          },
+                        ),
+                        const Text('Owner'),
+                      ],
+                    ),
+                    //worker
+                    Row(
+                      children: [
+                        Radio(
+                          //title: const Text('Worker'),
+                          value: UserType.worker,
+                          groupValue: userType,
+                          onChanged: (UserType? value) {
+                            setState(() {
+                              userType = value!;
+                            });
+                          },
+                        ),
+                        const Text('Worker'),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               //button for login,with container decoration
               Container(

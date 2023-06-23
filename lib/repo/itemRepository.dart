@@ -24,4 +24,22 @@ class ItemRepository {
         .then((value) => print('item added'))
         .catchError((onError) => print('failed to add item'));
   }
+
+  String getOwnerEmail(String workerEmail) {
+    String email = "";
+
+    FirebaseFirestore.instance
+        .collection('workers')
+        .doc(workerEmail)
+        .get()
+        .then((data) {
+      email = data['ownerEmail'];
+      print("inside then of item repo $email");
+    }).catchError(
+            (onError) => print("error in getting ownerEmail inside itemRepo "));
+
+    print("inside itemRepo $email");
+
+    return email;
+  }
 }

@@ -15,6 +15,7 @@ class UsersRepository {
     print('addUser invoked');
     //if user is owner
     if (persons.isOwner) {
+      //also adding to common user
       commonUser.doc(persons.email).set({
         'email': persons.email,
         'type': 'owner',
@@ -31,6 +32,7 @@ class UsersRepository {
           .catchError((onError) => print('Failed to add owner'));
     } //is user is worker
     else {
+      //also adding to common user
       commonUser.doc(persons.email).set({
         'email': persons.email,
         'type': 'worker',
@@ -42,6 +44,7 @@ class UsersRepository {
             'age': persons.age,
             'name': persons.name,
             'email': persons.email,
+            'ownerEmail': "",
           })
           .then((value) => print('worker added'))
           .catchError((onError) => print('Failed to add worker'));

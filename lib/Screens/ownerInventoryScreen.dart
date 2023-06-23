@@ -128,11 +128,6 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                             onPressed: () => deleteItem(
                                 snapshot.data!.docs[index].get('uid')),
                           ),
-                          /*,Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                            size: 40,
-                          ),*/
                         ),
                       ],
                     ),
