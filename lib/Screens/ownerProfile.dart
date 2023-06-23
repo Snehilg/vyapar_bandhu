@@ -1,14 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-  static const String _title = 'My Profile';
+import '../modal/persons.dart';
 
-  //variables of use which will later be provided by modal class
-  static const String _name = 'Jitendra Kumar';
-  static const String _email = 'jitendrakumar@hbtu.ac.in';
-  static const String _age = '35';
-  static const String _position = 'Owner/Worker';
+class OwnerProfile extends StatelessWidget {
+  //const OwnerProfile({Key? key}) : super(key: key);
+  final String _title = "Owner Profile";
+  final Persons person;
+  OwnerProfile(@required this.person);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "Name",
                     style: TextStyle(
                         color: Colors.black,
@@ -32,8 +32,8 @@ class ProfileScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "$_name",
-                    style: TextStyle(
+                    person.name,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 23,
                         fontWeight: FontWeight.normal),
@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "Email",
                     style: TextStyle(
                         color: Colors.black,
@@ -55,8 +55,8 @@ class ProfileScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "$_email",
-                    style: TextStyle(
+                    person.email,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 23,
                         fontWeight: FontWeight.normal),
@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "Age",
                     style: TextStyle(
                         color: Colors.black,
@@ -78,8 +78,8 @@ class ProfileScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "$_age",
-                    style: TextStyle(
+                    person.age,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 23,
                         fontWeight: FontWeight.normal),
@@ -88,8 +88,8 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             //display position
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -101,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "$_position",
+                    "Owner",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 23,

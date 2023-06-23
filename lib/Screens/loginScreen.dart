@@ -72,8 +72,10 @@ class _LoginScreenState extends State<LoginScreen> {
     //function to add person according to their type owner/worker,only if they are registering first time
     if (isRegistering) {
       print('add user executed');
-      UsersRepository().addUser(Persons(address, age, email, name,
-          (userType.name == 'owner') ? true : false));
+      UsersRepository().addUser(
+        Persons(address, age, email, name,
+            (userType.name == 'owner') ? true : false, ""),
+      );
     }
 
     /* Navigator.push(

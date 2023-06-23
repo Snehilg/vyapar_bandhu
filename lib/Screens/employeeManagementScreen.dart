@@ -8,22 +8,6 @@ class EmployeeManagementScreen extends StatefulWidget {
   const EmployeeManagementScreen({Key? key}) : super(key: key);
   static const String _title = 'Employee Management';
 
-  static const names = [
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-    'Jitendra Kumar',
-  ];
-
-  static const age = [40, 70, 60, 80, 90, 60, 21, 40, 50];
-  static const leaves_taken = [2, 4, 6, 7, 5, 8, 5, 14, 2];
-  static const days_worked = [22, 3, 0, 12, 14, 20, 27, 10, 11];
-
   @override
   State<EmployeeManagementScreen> createState() =>
       _EmployeeManagementScreenState();
