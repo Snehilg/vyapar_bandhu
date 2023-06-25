@@ -57,62 +57,79 @@ class _SellItemScreenState extends State<SellItemScreen> {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 15),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Row(
-                      //we have used flex in the column and icon as well to allot 3:1 space
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              //name of item
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                                child: Text(
-                                  snapshot.data!.docs[index].get('name'),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              //current quantity of item
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                child: Text(
-                                  'current quantity :${snapshot.data!.docs[index].get('currentQuantity')}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 23,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      child: Row(
+                        //we have used flex in the column and icon as well to allot 3:1 space
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                //name of item
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 5, 0, 0),
+                                  child: Text(
+                                    snapshot.data!.docs[index].get('name'),
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.minimize,
-                              color: Colors.white,
+                                //current quantity of item
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: Text(
+                                    'current quantity :${snapshot.data!.docs[index].get('currentQuantity')}',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 23,
+                                    ),
+                                  ),
+                                ),
+                                //price
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 5, 0, 0),
+                                  child: Text(
+                                    '₹${snapshot.data!.docs[index].get('pricePerUnit')}',
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
                             ),
-                            //for updating the fxn called with curr quant and uid
-                            onPressed: () => updateCount(
-                                snapshot.data!.docs[index]
-                                    .get('currentQuantity'),
-                                snapshot.data!.docs[index].get('uid')),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            flex: 1,
+                            child: TextButton(
+                              child: const Icon(
+                                Icons.do_not_disturb_on_outlined,
+                                color: Colors.white,
+                              ),
+                              //for updating the fxn called with curr quant and uid
+                              onPressed: () => updateCount(
+                                  snapshot.data!.docs[index]
+                                      .get('currentQuantity'),
+                                  snapshot.data!.docs[index].get('uid')),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
