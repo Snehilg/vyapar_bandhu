@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:vyapar_bandhu/repo/itemRepository.dart';
 
 class SellItemScreen extends StatefulWidget {
   const SellItemScreen({Key? key}) : super(key: key);
@@ -12,8 +10,6 @@ class SellItemScreen extends StatefulWidget {
 
 class _SellItemScreenState extends State<SellItemScreen> {
   static const String _title = 'Sell item';
-  String st =
-      ItemRepository().getOwnerEmail(FirebaseAuth.instance.currentUser!.email!);
 
   //stream of items in owners through email of owner from worker
   Stream<QuerySnapshot> itemsStream = FirebaseFirestore.instance
@@ -47,7 +43,7 @@ class _SellItemScreenState extends State<SellItemScreen> {
       appBar: AppBar(title: const Text(_title), backgroundColor: Colors.blue),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
-          stream: itemsStream,
+          stream: itemsRef.snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {

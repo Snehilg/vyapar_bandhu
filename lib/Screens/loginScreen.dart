@@ -23,7 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
   static bool isRegistering = true;
   static String headingTitle = 'Register';
   //Already Registered means want to login
-  static String buttonTitle = 'Already Registered';
+  static String buttonTitle = 'Existing User? Login Here';
+  //the Loginbutton title
+  static String loginButtonTitle = 'Register';
 
   final TextEditingController addressController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
@@ -44,7 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
         isRegistering = true;
       }
       headingTitle = isRegistering ? 'Register' : 'Login';
-      buttonTitle = isRegistering ? 'Already Registered' : 'Want to Register';
+      buttonTitle = isRegistering
+          ? 'Existing User? Login Here'
+          : 'New User? Register Here';
+      loginButtonTitle = isRegistering ? 'Register' : 'Login';
     });
   }
 
@@ -105,6 +110,17 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              //vyapar Bandhu
+              const Padding(
+                padding: EdgeInsets.all(15),
+                child: Text(
+                  "Vyapar Bandhu",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
               //title
               Padding(
                 padding: const EdgeInsets.all(15),
@@ -117,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Visibility(
                 visible: !isRegistering,
                 child: const SizedBox(
-                  height: 270,
+                  height: 222,
                 ),
               ),
               //wrapping name,address,age and radio with visible widget
@@ -168,48 +184,45 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               //Radio Button for owner and worker
-              Visibility(
-                visible: isRegistering,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //radio button connects itself with an enum
-                  //and on changed is responsible for changing the global variable
-                  //group value is that global value holding the current selected option
-                  children: [
-                    //owner
-                    Row(
-                      children: [
-                        Radio(
-                          //title: const Text('Owner'),
-                          value: UserType.owner,
-                          groupValue: userType,
-                          onChanged: (UserType? value) {
-                            setState(() {
-                              userType = value!;
-                            });
-                          },
-                        ),
-                        const Text('Owner'),
-                      ],
-                    ),
-                    //worker
-                    Row(
-                      children: [
-                        Radio(
-                          //title: const Text('Worker'),
-                          value: UserType.worker,
-                          groupValue: userType,
-                          onChanged: (UserType? value) {
-                            setState(() {
-                              userType = value!;
-                            });
-                          },
-                        ),
-                        const Text('Worker'),
-                      ],
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //radio button connects itself with an enum
+                //and on changed is responsible for changing the global variable
+                //group value is that global value holding the current selected option
+                children: [
+                  //owner
+                  Row(
+                    children: [
+                      Radio(
+                        //title: const Text('Owner'),
+                        value: UserType.owner,
+                        groupValue: userType,
+                        onChanged: (UserType? value) {
+                          setState(() {
+                            userType = value!;
+                          });
+                        },
+                      ),
+                      const Text('Owner'),
+                    ],
+                  ),
+                  //worker
+                  Row(
+                    children: [
+                      Radio(
+                        //title: const Text('Worker'),
+                        value: UserType.worker,
+                        groupValue: userType,
+                        onChanged: (UserType? value) {
+                          setState(() {
+                            userType = value!;
+                          });
+                        },
+                      ),
+                      const Text('Worker'),
+                    ],
+                  ),
+                ],
               ),
               //button for login,with container decoration
               Container(
@@ -221,11 +234,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: TextButton(
                   onPressed: signIn,
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  child: Text(
+                    loginButtonTitle,
+                    style: const TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 280,
               ),
               //button to choose Login/Register
               Center(

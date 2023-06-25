@@ -59,31 +59,7 @@ class _MyAppState extends State<MyApp> {
             ? LoginScreen()
             : ((type == "owner")
                 ? OwnerNavigationScreen()
-                : WorkerNavigationScreen())
-        /* Scaffold(
-        appBar: AppBar(
-          title: const Text(_title),
-          backgroundColor: Colors.blue,
-        ),
-        body: SafeArea(
-          child: StreamBuilder(
-              //builder dependent on auth state with initial state of current user
-              stream: FirebaseAuth.instance.authStateChanges(),
-              initialData: FirebaseAuth.instance.currentUser,
-              builder: (context, snapshot) {
-                //if user isn't logged in
-                if (!(snapshot.hasData)) {
-                  return const LoginScreen();
-                } else {
-                  return WorkerNavigationScreen();
-                  /*const Center(
-                    child: CircularProgressIndicator(),
-                  );*/
-                }
-              }),
-        ),
-      ),*/
-        );
+                : WorkerNavigationScreen()));
   }
 }
 /*
