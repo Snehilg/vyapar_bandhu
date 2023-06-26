@@ -36,6 +36,7 @@ class _AddWorkerScreenState extends State<AddWorkerScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(AddWorkerScreen._title),
+        backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
@@ -72,7 +73,8 @@ class _AddWorkerScreenState extends State<AddWorkerScreen> {
                             children: [
                               //name of worker
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 0, 0),
                                 child: Text(
                                   snapshot.data!.docs[index].get('name'),
                                   style: const TextStyle(
@@ -83,26 +85,44 @@ class _AddWorkerScreenState extends State<AddWorkerScreen> {
                               ),
                               //email of worker
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
                                 child: Text(
-                                  'email :${snapshot.data!.docs[index].get('email')}',
+                                  '${snapshot.data!.docs[index].get('email')}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
                                   ),
                                 ),
                               ),
-                              //age of worker
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                child: Text(
-                                  'age :${snapshot.data!.docs[index].get('age')}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 23,
+                              //age
+                              Row(
+                                children: [
+                                  //heading age
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
+                                    child: Text(
+                                      'Age :',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                  //age of worker
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(10, 5, 0, 10),
+                                    child: Text(
+                                      '${snapshot.data!.docs[index].get('age')}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
                         ),
@@ -110,10 +130,10 @@ class _AddWorkerScreenState extends State<AddWorkerScreen> {
                           flex: 1,
                           child: IconButton(
                             icon: const Icon(
-                              Icons.add_box_rounded,
+                              Icons.person_add_alt_outlined,
                               color: Colors.white,
                             ),
-                            iconSize: 22,
+                            iconSize: 35,
                             onPressed: () => addWorker(
                                 snapshot.data!.docs[index].get('email')),
                           ),

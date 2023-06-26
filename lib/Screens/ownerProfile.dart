@@ -13,7 +13,7 @@ class OwnerProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title), backgroundColor: Colors.blue),
+      appBar: AppBar(title: Text(_title), backgroundColor: Colors.black),
       body: SafeArea(
         child: Row(
           children: [
@@ -23,7 +23,19 @@ class OwnerProfile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 50),
+                //icon on profile
+                const Row(
+                  children: [
+                    SizedBox(
+                      width: 70,
+                    ),
+                    Icon(
+                      Icons.person_pin_outlined,
+                      size: 200,
+                    ),
+                  ],
+                ),
+                //const SizedBox(height: 50),
                 //display name
                 Padding(
                   padding: const EdgeInsets.all(10.0),

@@ -9,7 +9,7 @@ import '../modal/persons.dart';
 
 class OwnerNavigationScreen extends StatelessWidget {
   const OwnerNavigationScreen({Key? key}) : super(key: key);
-  static const String _title = 'Owner Screen';
+  static const String _title = 'Owner';
 
   //function to get data->create person->show profile
   void showProfile(var context) async {
@@ -32,7 +32,7 @@ class OwnerNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_title), backgroundColor: Colors.blue),
+      appBar: AppBar(title: Text(_title), backgroundColor: Colors.black),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -128,7 +128,7 @@ class OwnerNavigationScreen extends StatelessWidget {
                                             const EmployeeManagementScreen()));
                               },
                               child: const Text(
-                                'Employee Management',
+                                'Manage Employees',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 25),
                               ),

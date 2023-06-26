@@ -42,6 +42,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(_title),
+        backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: Column(
@@ -99,13 +100,13 @@ class _AddItemScreenState extends State<AddItemScreen> {
             //Add Button
             Container(
               height: 50,
-              width: 100,
+              width: 130,
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 child: const Text(
-                  'Add',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  'Add Item',
+                  style: TextStyle(color: Colors.white, fontSize: 23),
                 ),
                 onPressed: addItem,
               ),

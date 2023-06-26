@@ -40,7 +40,7 @@ class _SellItemScreenState extends State<SellItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(_title), backgroundColor: Colors.blue),
+      appBar: AppBar(title: const Text(_title), backgroundColor: Colors.black),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
           stream: itemsRef.snapshots(),

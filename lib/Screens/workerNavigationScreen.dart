@@ -35,7 +35,7 @@ class WorkerNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(_title), backgroundColor: Colors.blue),
+      appBar: AppBar(title: const Text(_title), backgroundColor: Colors.black),
       body: SafeArea(
         child: Column(
           children: [

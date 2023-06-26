@@ -38,9 +38,9 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(
+      appBar: AppBar(
           title: Text(OwnerInventoryScreen._title),
-          backgroundColor: Colors.blue),*/
+          backgroundColor: Colors.black),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
           stream: itemsStream,
@@ -58,8 +58,9 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 return Padding(
+                  //padding for space in between tile
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
                   child: Container(
                     decoration: BoxDecoration(
                       //which color to show based on quantity
@@ -68,8 +69,8 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                               int.parse(
                                   '${snapshot.data!.docs[index].get('minQuantity')}'))
                           ? Colors.blue
-                          : Colors.red,
-                      borderRadius: BorderRadius.circular(12),
+                          : Colors.red[800],
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
                       //we have used flex in the column and icon as well to allot 3:1 space
@@ -82,7 +83,8 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                             children: [
                               //name of item
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 12, 0, 0),
                                 child: Text(
                                   snapshot.data!.docs[index].get('name'),
                                   style: const TextStyle(
@@ -91,9 +93,19 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(15, 5, 0, 0),
+                                child: Text(
+                                  '₹${snapshot.data!.docs[index].get('pricePerUnit')}',
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
                               //current quantity of item
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                                 child: Text(
                                   'current quantity :${snapshot.data!.docs[index].get('currentQuantity')}',
                                   style: const TextStyle(
@@ -105,9 +117,9 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                               //minimum quantity
                               Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                                    const EdgeInsets.fromLTRB(15, 0, 0, 12),
                                 child: Text(
-                                  'minimum quantity ${snapshot.data!.docs[index].get('minQuantity')}',
+                                  'min quantity :${snapshot.data!.docs[index].get('minQuantity')}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 23,
@@ -124,7 +136,7 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
                               Icons.delete,
                               color: Colors.white,
                             ),
-                            iconSize: 50,
+                            iconSize: 30,
                             onPressed: () => deleteItem(
                                 snapshot.data!.docs[index].get('uid')),
                           ),
@@ -140,7 +152,7 @@ class _OwnerInventoryScreenState extends State<OwnerInventoryScreen> {
       ),
       //floating action button -> add item screen
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[700],
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         onPressed: () {
           Navigator.push(context,

@@ -38,7 +38,7 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
     return Scaffold(
       appBar: AppBar(
           title: const Text(EmployeeManagementScreen._title),
-          backgroundColor: Colors.blue),
+          backgroundColor: Colors.black),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
           stream: workerStream,
@@ -74,7 +74,8 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
                             children: [
                               //name of worker
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 0, 0),
                                 child: Text(
                                   snapshot.data!.docs[index].get('name'),
                                   style: const TextStyle(
@@ -83,38 +84,75 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              //age of worker
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                child: Text(
-                                  'age :${snapshot.data!.docs[index].get('age')}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 23,
-                                  ),
-                                ),
-                              ),
                               //email of worker
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                                 child: Text(
-                                  'email :${snapshot.data!.docs[index].get('email')}',
+                                  '${snapshot.data!.docs[index].get('email')}',
                                   style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 23,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ),
-                              //address of worker
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                child: Text(
-                                  'address :${snapshot.data!.docs[index].get('address')}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 23,
+                              //age
+                              Row(
+                                children: [
+                                  //heading age
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+                                    child: Text(
+                                      'Age :',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  //age of worker
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(10, 7, 0, 0),
+                                    child: Text(
+                                      '${snapshot.data!.docs[index].get('age')}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              //address of worker
+                              //age
+                              Row(
+                                children: [
+                                  //heading age
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
+                                    child: Text(
+                                      'Address :',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  //age of worker
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(10, 5, 0, 10),
+                                    child: Text(
+                                      '${snapshot.data!.docs[index].get('address')}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -123,10 +161,10 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
                           flex: 1,
                           child: IconButton(
                             icon: const Icon(
-                              Icons.delete,
+                              Icons.person_remove_alt_1_outlined,
                               color: Colors.white,
                             ),
-                            iconSize: 22,
+                            iconSize: 35,
                             onPressed: () => removeWorker(
                                 snapshot.data!.docs[index].get('email')),
                           ),
@@ -142,7 +180,7 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
       ),
       //floating action button
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[700],
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         onPressed: () {
           Navigator.push(
