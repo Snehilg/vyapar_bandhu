@@ -27,7 +27,19 @@ class WorkerProfile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 50),
+                //icon on profile
+                const Row(
+                  children: [
+                    SizedBox(
+                      width: 70,
+                    ),
+                    Icon(
+                      Icons.person_pin_outlined,
+                      size: 200,
+                    ),
+                  ],
+                ),
+                //const SizedBox(height: 50),
                 //display name
                 Padding(
                   padding: const EdgeInsets.all(10.0),

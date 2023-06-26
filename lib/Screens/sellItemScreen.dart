@@ -1,15 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SellItemScreen extends StatefulWidget {
-  const SellItemScreen({Key? key}) : super(key: key);
-
+  //const SellItemScreen({Key? key}) : super(key: key);
+  final CollectionReference itemRef;
+  SellItemScreen(@required this.itemRef);
   @override
-  State<SellItemScreen> createState() => _SellItemScreenState();
+  State<SellItemScreen> createState() => _SellItemScreenState(itemRef);
 }
 
 class _SellItemScreenState extends State<SellItemScreen> {
+  final CollectionReference itemsRef;
+  _SellItemScreenState(@required this.itemsRef);
+
   static const String _title = 'Sell item';
+  /*String worker = FirebaseAuth.instance.currentUser!.email!;
+  CollectionReference owner = FirebaseFirestore.instance.collection('owners');
+  String ownerEmail = "";
 
   //stream of items in owners through email of owner from worker
   Stream<QuerySnapshot> itemsStream = FirebaseFirestore.instance
@@ -23,6 +31,7 @@ class _SellItemScreenState extends State<SellItemScreen> {
       .collection('owners')
       .doc('snehilgcoc@gmail.com')
       .collection('items');
+*/
 
   //function that will be called by minus icon
   void updateCount(String count, String uid) {

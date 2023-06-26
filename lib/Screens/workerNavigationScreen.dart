@@ -4,10 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:vyapar_bandhu/Screens/sellItemScreen.dart';
 import 'package:vyapar_bandhu/Screens/workerProfile.dart';
 import 'package:vyapar_bandhu/modal/persons.dart';
+import 'package:vyapar_bandhu/repo/itemRepository.dart';
 
 class WorkerNavigationScreen extends StatelessWidget {
   const WorkerNavigationScreen({Key? key}) : super(key: key);
   static const String _title = 'Worker Screen';
+
+  //funtion to show SellItemScreen and pass ref
+  void showSellItem(var context) async {
+    CollectionReference itemsRef = await ItemRepository().getItemsRef();
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (builder) => SellItemScreen(itemsRef),
+        ));
+  }
 
   //function to get data->create person->show profile
   void showProfile(var context) async {
@@ -79,12 +90,7 @@ class WorkerNavigationScreen extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (builder) =>
-                                        const SellItemScreen(),
-                                  ));
+                              showSellItem(context);
                             },
                             child: const Text(
                               'Sell Item',

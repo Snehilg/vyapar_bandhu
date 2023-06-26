@@ -26,24 +26,22 @@ class ItemRepository {
         .catchError((onError) => print('failed to add item'));
   }
 
-  CollectionReference getItemRef(String workerEmail) {
-    String email = "";
-
-    FirebaseFirestore.instance
+  Future<CollectionReference> getItemsRef() async {
+    String ownerEmail = "";
+    await FirebaseFirestore.instance
         .collection('workers')
-        .doc(FirebaseAuth.instance.currentUser!.email!)
+        .doc(FirebaseAuth.instance.currentUser!.email)
         .get()
-        .then((data) {
-      email = data['ownerEmail'];
-      print("inside then of item repo $email");
-    }).catchError(
-            (onError) => print("error in getting ownerEmail inside itemRepo "));
+        .then((snapshot) {
+      ownerEmail = snapshot['ownerEmail'];
+    });
+    print('inside item repo getItemsRef $ownerEmail');
 
-    print("inside itemRepo $email");
-
-    return FirebaseFirestore.instance
+    CollectionReference itemsRef = await FirebaseFirestore.instance
         .collection('owners')
-        .doc(email)
+        .doc(ownerEmail)
         .collection('items');
+
+    return itemsRef;
   }
 }
